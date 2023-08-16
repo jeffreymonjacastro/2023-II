@@ -3,7 +3,9 @@
 using namespace std;
 
 int main(){
-  cout << "Hello World";
-  return 0;
+    int* p, *q,r;
+    q = nullptr;
+    cout << "Hello World";
+    return 0;
 }
 
