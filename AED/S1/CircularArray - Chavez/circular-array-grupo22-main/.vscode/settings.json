@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "filesystem": "cpp",
+        "__tuple": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
+        "__split_buffer": "cpp",
+        "bitset": "cpp",
+        "string_view": "cpp",
+        "iostream": "cpp"
+    }
+}

@@ -54,6 +54,7 @@ public:
     void pop(){
         // Si el stack está vacío, no hace nada
         if (size == 0){
+            cout << "Stack is empty" << endl;
             return;
         }
 
@@ -62,8 +63,9 @@ public:
     }
 
     // Devuelve el elemento que está en el top del stack
-    int front(){
+    int top(){
         if (size == 0){
+            cout << "Stack is empty" << endl;
             return -1; // Representación que el stack está vacío
         }
         return array[size-1];
@@ -104,7 +106,7 @@ public:
     }
 
     // Agrega un elemento al final del queue
-    void enqueue(int data){
+    void push(int data){
         // Si el queue está lleno, no hace nada
         if (isFull()){
             return;
@@ -126,7 +128,7 @@ public:
     }
 
     // Elimina el elemento que está en el front del queue
-    void dequeue(){
+    void pop(){
         // Si el queue está vacío, no hace nada
         if (isEmpty()){
             return;
@@ -165,14 +167,14 @@ public:
 
 int main(){
     Queue q;
-    q.enqueue(1);
-    q.enqueue(2);
+    q.push(1);
+    q.push(2);
     cout << q.getFront() << endl;
     cout << q.getBack() << endl;
-    q.dequeue();
-    q.enqueue(3);
-    q.dequeue();
-    q.enqueue(4);
+    q.pop();
+    q.push(3);
+    q.pop();
+    q.push(4);
     cout << q.getFront() << endl;
 
 
