@@ -16,3 +16,4 @@ void SelectionSort(int* arr, int size){
             swap(arr[i] , arr[posMin]);
     }
 }
+
