@@ -1,4 +1,4 @@
-#include "MergeSort.h"
+#include "merge.h"
 #include "SelectionSort.h"
 #include <iostream>
 #include <random>
