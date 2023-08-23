@@ -178,18 +178,19 @@ public:
     }
 
     void reverse() {
-        Node<T>* prev = nullptr;
-        Node<T>* curr = head;
-        Node<T>* next = nullptr;
+        Node<T>* i = nullptr;
+        Node<T>* j = head;
+        Node<T>* k = nullptr;
 
-        while (curr != nullptr) {
-            next = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = next;
+        while (j != nullptr) {
+            k = j->next;
+            j->next = i;
+
+            i = j;
+            j = k;
         }
 
-        head = prev;
+        head = i;
     }
 
     void sort() {
