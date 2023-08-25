@@ -34,3 +34,7 @@
 # CMakeList
 cmake-build-debug/*
 .idea/*
+
+# Node
+node_modules/
+```
