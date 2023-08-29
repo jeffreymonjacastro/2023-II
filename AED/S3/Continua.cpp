@@ -102,7 +102,7 @@ public:
             cout << temp->data << "->";
             temp = temp->next;
         }
-        cout << "nullptr";
+        cout << "null";
     }
 
     friend List interseccion(List& l1, List& l2){
@@ -112,7 +112,7 @@ public:
 
         while (i != nullptr && j != nullptr){
             if (i->data == j->data){
-                l.push_back(i->data);
+                l.push_front(i->data);
                 i = i->next;
                 j = j->next;
             }
@@ -121,6 +121,8 @@ public:
             else
                 j = j->next;
         }
+
+        l.reverse();
 
         return l;
     };
@@ -228,7 +230,7 @@ public:
             cout << temp->data << "<->";
             temp = temp->next;
         }
-        cout << "nullptr";
+        cout << "null";
     }
 
     bool isPalindromoBinario(){
