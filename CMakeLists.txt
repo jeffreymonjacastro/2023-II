@@ -6,4 +6,4 @@ set(CMAKE_CXX_STANDARD 23)
 add_executable(2023_II
         AED/S3/Continua.cpp)
 
-add_executable(mentoria Mentorias/S1/kly.cpp)
+add_executable(mentoria Others/key.cpp)

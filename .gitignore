@@ -38,3 +38,8 @@ cmake-build-debug/*
 # Node
 node_modules/
 ```
+
+# Verilog
+*.wpc
+*.lpr
+*.xpr
