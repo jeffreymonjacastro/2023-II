@@ -1,0 +1,37 @@
+$date
+	Sat Sep 02 10:42:43 2023
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module Mux2a1_tb $end
+$var wire 1 ! y $end
+$var reg 1 " d0 $end
+$var reg 1 # d1 $end
+$var reg 1 $ s $end
+$scope module test $end
+$var wire 1 " a0 $end
+$var wire 1 # a1 $end
+$var wire 1 $ s $end
+$var reg 1 ! y $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0$
+0#
+0"
+0!
+$end
+#40000
+1!
+1"
+#60000
+1#
+#70000
+1$
+#80000

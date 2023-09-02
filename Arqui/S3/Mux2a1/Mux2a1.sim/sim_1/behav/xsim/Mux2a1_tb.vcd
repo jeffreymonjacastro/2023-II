@@ -1,0 +1,68 @@
+$date
+   Sat Sep  2 10:45:45 2023
+$end
+$version
+  2022.2
+$end
+$timescale
+  1ps
+$end
+$scope module Mux2a1_tb $end
+$var reg 1 ! d0 $end
+$var reg 1 " d1 $end
+$var reg 1 # s $end
+$var wire 1 $ y $end
+$scope module test $end
+$var wire 1 % a0 $end
+$var wire 1 & a1 $end
+$var wire 1 ' s $end
+$var reg 1 ( y $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0!
+0"
+0#
+0$
+0%
+0&
+0'
+0(
+$end
+#10000
+1#
+1'
+0(
+#20000
+1"
+0#
+1&
+0'
+0(
+#30000
+1#
+1$
+1'
+1(
+#40000
+1!
+0"
+0#
+1%
+0&
+0'
+1(
+#50000
+1#
+0$
+1'
+0(
+#60000
+1"
+0#
+1$
+1&
+0'
+1(
