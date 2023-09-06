@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module Mux2a1(a0,a1,s,y);
+module Mux2a1(a0, a1, s, y);
     input a0, a1, s;
     output y;
     reg y; // va a poder modificarse
