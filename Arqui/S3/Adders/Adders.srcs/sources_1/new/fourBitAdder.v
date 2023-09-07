@@ -20,14 +20,12 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module fourBitAdder(s0, s1, s2, s3, co, a0, a1, a2, a3, b0, b1, b2, b3, cin);
-	input a0, a1, a2, a3, b0, b1, b2, b3, cin;
-	output s0, s1, s2, s3, co;
-
+module fourBitAdder(output [3:0] s, output co, input [3:0] a, b);
 	wire c1, c2, c3;
 
-	fullAdder fA1(s0, c1, a0, b0, cin);
-	fullAdder fA2(s1, c2, a1, b1, c1);
-	fullAdder fA3(s2, c3, a2, b2, c2);
-	fullAdder fA4(s3, co, a3, b3, c3);
+	fullAdder fA1(s[0], c1, a[0], b[0], 1'b0);
+	fullAdder fA2(s[1], c2, a[1], b[1], c1);
+	fullAdder fA3(s[2], c3, a[2], b[2], c2);
+	fullAdder fA4(s[3], co, a[3], b[3], c3);
+
 endmodule	

@@ -21,24 +21,30 @@
 
 
 module fourBitAdder_tb;
-  reg a0, a1, a2, a3, b0, b1, b2, b3, cin;
-	wire s0, s1, s2, s3, co;
+  wire [3:0] s;
+  wire co;
+  reg [3:0] a, b;
 
-  fourBitAdder fbA(s0, s1, s2, s3, co, a0, a1, a2, a3, b0, b1, b2, b3, cin);
+  integer i, j;
+
+  fourBitAdder fbA(s, co, a, b);
 
   initial begin
-    a0 = 0; a1 = 1; a2 = 0; a3 = 0;
-    b0 = 1; b1 = 1; b2 = 0; b3 = 0;
-    cin = 0;
-    #10
-    a0 = 1; a1 = 0; a2 = 0; a3 = 0;
-    b0 = 1; b1 = 1; b2 = 1; b3 = 0;
-    #10
-    a0 = 1; a1 = 0; a2 = 1; a3 = 0;
-    b0 = 0; b1 = 1; b2 = 0; b3 = 1;
-    #10
-    a0 = 1; a1 = 1; a2 = 1; a3 = 1;
-    b0 = 1; b1 = 0; b2 = 0; b3 = 0;
-    #10 $finish;
+    a = 4'b0000;
+    b = 4'b0000;
+    i = 0;
+    j = 0;
+
+    for(i=0; i<4; i=i+1) begin
+      #4 
+      a = i;
+      for(j=0; j<4; j=j+1) begin
+        #1
+        b = j;
+      end
+      //$display("a = %b, b = %b, s = %b, co = %b", a, b, s, co);
+    end
+
+    $finish;
   end
 endmodule
