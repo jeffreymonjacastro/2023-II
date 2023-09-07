@@ -31,5 +31,6 @@ module fullAdder(s, co, a, b, ci);
   halfAdder hA2(s, c2, s1, ci);
 
   assign co = c1 | c2;
+  // OR(co, c1, c2);
 
 endmodule

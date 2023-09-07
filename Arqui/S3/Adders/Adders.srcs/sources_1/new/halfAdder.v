@@ -27,3 +27,9 @@ module halfAdder(s, c, a, b);
   assign s = a ^ b; // XOR
   assign c = a & b; // AND
 endmodule
+
+// module halfAdder(output s,c, input a,b);
+
+//   XOR(s,a,b);
+//   AND(c,a,b);
+// endmodule
