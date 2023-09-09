@@ -30,21 +30,30 @@ module fourBitAdder_tb;
   fourBitAdder fbA(s, co, a, b);
 
   initial begin
-    a = 4'b0000;
-    b = 4'b0000;
-    i = 0;
-    j = 0;
+    // a = 4'b0000;
+    // b = 4'b0000;
+    // i = 0;
+    // j = 0;
 
-    for(i=0; i<4; i=i+1) begin
-      #4 
-      a = i;
-      for(j=0; j<4; j=j+1) begin
-        #1
-        b = j;
-      end
-      //$display("a = %b, b = %b, s = %b, co = %b", a, b, s, co);
-    end
+    // for(i=0; i<4; i=i+1) begin
+    //   #4 
+    //   a = i;
+    //   for(j=0; j<4; j=j+1) begin
+    //     #1
+    //     b = j;
+    //   end
+    //   //$display("a = %b, b = %b, s = %b, co = %b", a, b, s, co);
+    // end
 
-    $finish;
+    // $finish;
+
+    a = 4'b0111;
+    b = 4'b0001;
+    #10
+    a = 4'b1111;
+    b = 4'b0001;
+    #10 $finish;
+
+
   end
 endmodule
