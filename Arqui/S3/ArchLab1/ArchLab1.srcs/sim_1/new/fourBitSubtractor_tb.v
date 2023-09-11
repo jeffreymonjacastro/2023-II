@@ -33,6 +33,12 @@ module fourBitSubtractor_tb;
     #10
     a = 4'b0111;
     b = 4'b0100;
+    #10 
+    a = 4'b0001;
+    b = 4'b0010;
+    #10
+    a = 4'b0011;
+    b = 4'b0011;
     #10 $finish;
   end
 
