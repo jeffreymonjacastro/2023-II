@@ -92,55 +92,184 @@ public:
     ///imprime el arbol inOrder
     void inOrder(){
         inOrder(root);
+        cout << endl;
     }
 
     ///imprime el subarbol con nodo raiz p, preOrder
-    void preOrder(NodeBT*& p){}
+    void preOrder(NodeBT*& p){
+        if (p != nullptr) {
+            cout << p->data << " ";
+            preOrder(p->left);
+            preOrder(p->right);
+        }
+    }
 
     ///imprime el arbol, preOrder
-    void preOrder(){}
+    void preOrder(){
+        preOrder(root);
+        cout << endl;
+    }
 
     ///imprime el subarbol con nodo raiz p, postOrder
-    void postOrder(NodeBT*& p){}
+    void postOrder(NodeBT*& p){
+        if (p != nullptr) {
+            postOrder(p->left);
+            postOrder(p->right);
+            cout << p->data << " ";
+        }
+    }
 
     ///imprime el arbol, postOrder
-    void postOrder(){}
+    void postOrder(){
+        postOrder(root);
+        cout << endl;
+    }
 
     ///imprime el subarbol con nodo raiz p, dfs
-    void dfs(NodeBT*& p){}
+    void dfs(NodeBT*& p){
+        if (p == nullptr)
+            return;
+
+        stack<NodeBT*> Stack;
+        Stack.push(p);
+
+        while(!Stack.empty()) {
+            auto node = Stack.top();
+            cout << node->data << " ";
+            Stack.pop();
+            if (node->right != nullptr)
+                Stack.push(node->right);
+            if (node->left != nullptr)
+                Stack.push(node->left);
+        }
+    }
 
     ///imprime el arbol, dfs
-    void dfs(){}
+    void dfs(){
+        dfs(root);
+        cout << endl;
+    }
 
     ///imprime el subarbol con nodo raiz p, bfs
-    void bfs(NodeBT*& p){}
+    void bfs(NodeBT*& p){
+        if (p == nullptr)
+            return;
+
+        queue<NodeBT*> Queue;
+        Queue.push(p);
+
+        while(!Queue.empty()){
+            auto node = Queue.front();
+            cout << node->data << " ";
+            Queue.pop();
+
+            if(node->left != nullptr)
+                Queue.push(node->left);
+            if(node->right != nullptr)
+                Queue.push(node->right);
+        }
+    }
 
     ///imprime el arbol, dfs
-    void bfs(){}
+    void bfs(){
+        bfs(root);
+        cout << endl;
+    }
 
     ///responde la validez de la afirmación: "value es un elemento del subarbol con raiz p"
-    bool find(NodeBT*& p, int value){}
+    bool find(NodeBT*& p, int value){
+        if (p == nullptr)
+            return false;
+
+        if (value < p->data)
+            return find(p->left, value);
+        else if (value > p->data)
+            return find(p->right, value);
+        else
+            return true;
+    }
 
     ///responde la validez de la afirmación: "value es un elemento del arbol"
-    bool find(int value){}
+    bool find(int value){
+        return find(root, value);
+    }
 
     ///devuelve el puntero al nodo que contiene el minimo elemento del subarbol con raiz p
-    NodeBT* fMin(NodeBT*& p){}
+    NodeBT* fMin(NodeBT*& p){
+        if (p == nullptr){
+            return p;
+        }
+
+        if(p->left == nullptr)
+            return p;
+
+        return fMin(p->left);
+    }
 
     ///devuelve el puntero al nodo que contiene el minimo elemento del arbol
-    NodeBT* fMin(){}
+    NodeBT* fMin(){
+        return fMin(root);
+    }
 
     ///devuelve el puntero al nodo que contiene el maximo elemento del subarbol con raiz p
-    NodeBT* fMax(NodeBT* p){}
+    NodeBT* fMax(NodeBT* p){
+        if (p == nullptr){
+            return p;
+        }
+
+        if(p->right == nullptr)
+            return p;
+
+        return fMax(p->right);
+    }
 
     ///devuelve el puntero al nodo que contiene el maximo elemento del arbol
-    NodeBT* fMax(){}
+    NodeBT* fMax(){
+        return fMax(root);
+    }
 
     ///elimina val, si existe, del subarbol con nodo p
-    void remove(int val, NodeBT*& p){}
+    void remove(int val, NodeBT*& p){
+        if (p == nullptr)
+            return;
+
+        if (val < p->data)
+            return remove(val, p->left);
+        else if (val > p->data)
+            return remove(val, p->right);
+
+        // 3er caso 2 Hijos
+        if(p->left != nullptr && p->right != nullptr){
+            p->data = fMin(p->right)->data;
+            return remove(p->data, p->right);
+        }
+
+        // 1er caso Hoja
+        if (p->left == nullptr && p->right == nullptr) {
+            p = nullptr;
+            return;
+        }
+
+        // 2do caso: 1 hijo
+        if (p->left == nullptr){
+             auto temp = p;
+             p = p->right;
+             delete temp;
+            return;
+        }
+
+        if( p->right == nullptr){
+            auto temp = p;
+            p = p->left;
+            delete temp;
+            return;
+        }
+    }
 
     ///elimina val del arbol, si existe
-    void remove(int val){}
+    void remove(int val){
+        remove(val, root);
+    }
 };
 
 
@@ -208,23 +337,12 @@ void test3(){
     bstri->inOrder();
 }
 
-void testing(){
-    BST* bstree = new BST;
-    vector<int> v = {8, 3, 10, 1, 6, 14, 4, 7, 13};
-    for(int i = 0; i < v.size(); i++){
-        bstree->insert(v[i]);
-    }
-    cout<<"inOrder:\n";
-    bstree->inOrder();
-}
-
 int main(){
-//    cout<<"test1:\n";
-//    test1();
-//    cout<<"\ntest2:\n";
-//    test2();
-//    cout<<"\ntest3:\n";
-//    test3();
-    testing();
+    cout<<"test1:\n";
+    test1();
+    cout<<"\ntest2:\n";
+    test2();
+    cout<<"\ntest3:\n";
+    test3();
     return 0;
 }
