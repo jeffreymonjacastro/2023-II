@@ -47,49 +47,33 @@
 
 
 // D Flip Flop ENABLE Synchronus [with clock] (behavioral)
-// module d_flipflop(Q, Qn, clk, En, D);
-// 	input wire clk, En, D;
-// 	output reg Q, Qn;
-
-// 	always@(posedge clk) begin
-// 		if(En) begin
-// 			Q <= D;
-// 			Qn <= ~D;
-// 		end
-// 	end
-// endmodule
-
-
-// D Flip Flop ENABLE Asynchronus [with clock] (behavioral)
 module d_flipflop(Q, Qn, clk, En, D);
 	input wire clk, En, D;
 	output reg Q, Qn;
 
-	always@(posedge clk, posedge En) begin
+	always@(posedge clk) begin
 		if(En) begin
 			Q <= D;
 			Qn <= ~D;
 		end
 	end
-
 endmodule
 
 
-
-// D Flip Flop with MUX2:1 (behavioral)
+// D Flip Flop ENABLE Asynchronus [with clock] (behavioral)
 // module d_flipflop(Q, Qn, clk, En, D);
 // 	input wire clk, En, D;
 // 	output reg Q, Qn;
 
-// 	wire n1;
+// 	always@(posedge clk, posedge En) begin
+// 		if(En) begin
+// 			Q <= D;
+// 			Qn <= ~D;
+// 		end
+// 	end
 
-// 	mux2a1 mux(n1, Q, D, En);
-
-// 	always@(posedge clk) begin
-// 		Q <= n1;
-// 		Qn <= ~n1;
-// 	end	
 // endmodule
+
 
 
 
