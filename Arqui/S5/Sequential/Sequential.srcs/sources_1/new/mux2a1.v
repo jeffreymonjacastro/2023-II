@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 14.09.2023 18:39:37
+// Create Date: 15.09.2023 13:46:46
 // Design Name: 
-// Module Name: d_latch_tb
+// Module Name: mux2a1
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,17 +20,9 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module d_latch_tb;
-  reg D, En;
-	wire Q, Qn;
+module mux2a1(y, a0, a1, s);
+	input a0, a1, s;
+	output y;
 
-	d_latch dlatch(Q, Qn, D, En);
-
-	initial begin
-		En = 0; D = 0;
-		#100 $finish;
-	end
-
-	always #13 En = ~En;
-	always #10 D = ~D;
+	assign y = a0 & ~s | a1 & s;
 endmodule

@@ -50,3 +50,11 @@ module Mux2a1(a0,a1,s,y);
     end
 endmodule
 */
+
+// Mux2a1 behavioral
+// module Mux2a1(a0, a1, s, y);
+//     input a0, a1, s;
+//     output y;
+
+//     assign y = a0 & ~s | a1 & s;
+// endmodule
