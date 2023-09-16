@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 15.09.2023 13:46:46
+// Create Date: 16.09.2023 10:58:09
 // Design Name: 
-// Module Name: mux2a1
+// Module Name: d_flipflop_b_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,10 +19,18 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+module d_flipflop_b_tb();
+	reg clk, D;
+	wire Q, Qn;
 
-module mux2a1(y, a0, a1, s);
-	input a0, a1, s;
-	output y;
+	d_flipflop_b dff(Q, Qn, D, clk);
 
-	assign y = a0 & ~s | a1 & s;
+	initial begin
+		clk = 0; D = 0;
+		#120 $finish;
+	end
+
+	always #10 clk = ~clk;
+	always #13 D = ~D;
+
 endmodule

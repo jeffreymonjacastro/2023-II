@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 14.09.2023 17:36:06
+// Create Date: 16.09.2023 08:46:13
 // Design Name: 
-// Module Name: sr_latch
+// Module Name: fourBitRegister
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -19,24 +19,12 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-// Structural
-module sr_latch(Q, Qn, S, R);
-  output Q, Qn;
-  input S, R;
 
-  nand n1(Q, R, Qn);
-  nand n2(Qn, S, Q);
+module fourBitRegister(output [3:0] Q, input wire [3:0] D, input clk);
+    wire Qn0, Qn1, Qn2, Qn3;
+    
+    d_flipflop dff1(Q[0], Qn0, D[0], clk);
+    d_flipflop dff2(Q[1], Qn1, D[1], clk);
+    d_flipflop dff3(Q[2], Qn2, D[2], clk);
+    d_flipflop dff4(Q[3], Qn3, D[3], clk);
 endmodule
-
-// behavioral
-// module sr_latch(Q, Qn, S, R);
-//   output Q, Qn;
-//   input S, R;
-
-//   wire Q1, Qn1;
-  
-//   assign #1 Q1 = ~(S & Qn1);
-//   assign #1 Qn1 = ~(R & Q1);
-//   assign Q = Q1;
-//   assign Qn = Qn1;
-// endmodule

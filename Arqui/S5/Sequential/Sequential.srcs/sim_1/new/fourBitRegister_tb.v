@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 14.09.2023 18:39:37
+// Create Date: 16.09.2023 08:53:52
 // Design Name: 
-// Module Name: d_latch_tb
+// Module Name: fourBitRegister_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,17 +20,24 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module d_latch_tb;
-  reg D, En;
-	wire Q, Qn;
+module fourBitRegister_tb();
+    reg clk;
+    reg [3:0] D;
+    wire [3:0] Q;
 
-	d_latch dlatch(Q, Qn, D, En);
+    fourBitRegister fBR(Q, D, clk);
 
-	initial begin
-		En = 0; D = 0;
-		#100 $finish;
-	end
+    always begin
+        #5 clk = ~clk; 
+    end
 
-	always #12 En = ~En;
-	always #10 D = ~D;
+    initial begin
+        clk = 0; 
+        D = 4'b0000; 
+        #10 D = 4'b0001;
+        #10 D = 4'b0010;
+        #10 D = 4'b0100;
+        #10 D = 4'b1000;
+        #15 $finish; 
+    end
 endmodule

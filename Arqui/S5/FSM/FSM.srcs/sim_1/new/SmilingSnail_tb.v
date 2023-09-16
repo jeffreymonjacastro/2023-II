@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 14.09.2023 18:39:37
+// Create Date: 16.09.2023 09:19:35
 // Design Name: 
-// Module Name: d_latch_tb
+// Module Name: SmilingSnail_tb
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,17 +20,23 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module d_latch_tb;
-  reg D, En;
-	wire Q, Qn;
+module SmilingSnail_tb();
+    reg clk, reset, number;
+    wire smile;
 
-	d_latch dlatch(Q, Qn, D, En);
+    SmilingSnail SS(clk, reset, number, smile);
 
-	initial begin
-		En = 0; D = 0;
-		#100 $finish;
-	end
+    always #5 clk = ~clk;
 
-	always #12 En = ~En;
-	always #10 D = ~D;
+    initial begin
+        clk = 0;
+        reset = 0;
+        number = 0;
+        
+        #10 number = 1;
+        #10 number = 1;
+        #10 number = 0;
+        #10 number = 1;
+        #10 $finish;
+    end
 endmodule

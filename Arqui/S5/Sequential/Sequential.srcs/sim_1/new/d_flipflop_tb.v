@@ -19,37 +19,37 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-// Structural
-module d_flipflop_tb();
-	reg En, D;
-	wire Q, Qn;
-
-	d_flipflop dff(Q, Qn, En, D);
-
-	initial begin
-		En = 0; D = 0;
-		#120 $finish;
-	end
-
-	always #10 En = ~En;
-	always #13 D = ~D;
-
-endmodule
-
-
+// Normal D Flip Flop
 // module d_flipflop_tb();
-// 	reg clk, En, D;
+// 	reg En, D;
 // 	wire Q, Qn;
 
-// 	d_flipflop dff(Q, Qn, clk, En, D);
+// 	d_flipflop dff(Q, Qn, En, D);
 
 // 	initial begin
-// 		clk = 0; En = 0; D = 0;
+// 		En = 0; D = 0;
 // 		#120 $finish;
 // 	end
 
-// 	always #10 clk = ~clk;
-// 	always #33 En = ~En;
+// 	always #10 En = ~En;
 // 	always #13 D = ~D;
 
 // endmodule
+
+
+// D Flip Flop with synchronus clock
+module d_flipflop_tb();
+	reg clk, D;
+	wire Q, Qn;
+
+	d_flipflop dff(Q, Qn, D, clk);
+
+	initial begin
+		clk = 0; D = 0;
+		#120 $finish;
+	end
+
+	always #10 clk = ~clk;
+	always #13 D = ~D;
+
+endmodule

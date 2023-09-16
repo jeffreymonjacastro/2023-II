@@ -33,16 +33,16 @@
 // endmodule
 
 // //D Latch using SR Latch (structural)
-// module d_latch(Q, Qn, D, E);
-//   output Q, Qn;
-//   input D, E;
-// 	wire s1, r1;
+module d_latch(Q, Qn, D, En);
+  output Q, Qn;
+  input D, En;
+	wire s1, r1;
 
-// 	nand(s1, D, E);
-// 	nand(r1, ~D, E);
+	nand(r1, D, En);
+	nand(s1, ~D, En);
 
-// 	sr_latch srlatch(Q, Qn, s1, r1);
-// endmodule
+	sr_latch srlatch(Q, Qn, s1, r1);
+endmodule
 
 // D Latch structural
 // module d_latch(Q, Qn, D, En);
@@ -58,14 +58,14 @@
 // endmodule
 
 // D Latch behavioral
-module d_latch(Q, Qn, D, En);
-  input wire D, En;
-	output reg Q, Qn;
+// module d_latch(Q, Qn, D, En);
+//   input wire D, En;
+// 	output reg Q, Qn;
 
-	always@(En, D) begin // Lista de sensibilidad
-		if(En == 1'b1) begin
-			Q <= D;
-			Qn <= ~D;
-		end
-	end
-endmodule
+// 	always@(En, D) begin // Lista de sensibilidad
+// 		if(En == 1'b1) begin
+// 			Q <= D;
+// 			Qn <= ~D;
+// 		end
+// 	end
+// endmodule
