@@ -20,30 +20,30 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 // D Flip Flop normal using D Latch (structural);
-module d_flipflop(Q, Qn, D, clk);
-	input D, clk;
-	output Q, Qn;
+// module d_flipflop(Q, Qn, D, clk);
+// 	input D, clk;
+// 	output Q, Qn;
 
-	wire n1, n2, n3;
+// 	wire n1, n2, n3;
 
-	not(n3, clk);	
+// 	not(n3, clk);	
 
-	d_latch master(n1, n2, D, n3);
-	d_latch slave(Q, Qn, n1, clk);
-endmodule
+// 	d_latch master(n1, n2, D, n3);
+// 	d_latch slave(Q, Qn, n1, clk);
+// endmodule
 
 
 
 // D Flip Flop normal [with clock] (behavioral)
-// module d_flipflop(Q, Qn, clk, D);
-// 	input wire clk, D;
-// 	output reg Q, Qn;
+module d_flipflop(Q, Qn, D, clk);
+	input wire clk, D;
+	output reg Q, Qn;
 
-// 	always@(posedge clk) begin
-// 		Q <= D;
-// 		Qn <= ~D;
-// 	end
-// endmodule
+	always@(posedge clk) begin
+		Q <= D;
+		Qn <= ~D;
+	end
+endmodule
 
 
 
