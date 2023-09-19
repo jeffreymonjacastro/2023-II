@@ -5,6 +5,6 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_executable(2023_II AED/S5/BST.cpp)
 
-add_executable(mentoria Mentorias/S4/matrices.cpp)
+add_executable(mentoria Mentorias/S4/PC2-p1.cpp)
 
 add_executable(cpc CPC/Codeforces/895D3/A.cpp)
