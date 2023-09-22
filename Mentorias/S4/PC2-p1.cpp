@@ -102,52 +102,91 @@
 
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
-int main(){
+
+void imprim(int* arr, int n){
+    for (int i = 0; i < n; i++)
+        cout << arr[i] << " ";
+    cout << "\n";
+}
+
+int suma(int x){
+    return x + 4;
+}
+
+void sumaP(int* arr, int n) {
+    int suma = 0;
+    for (int j = 0; j < n; j++) {
+        suma += arr[j];
+        arr[j] = suma;
+    }
+}
+
+void ordenamiento(int* arr, int k) {
+    for (int i = 0; i < k - 1; i++) {
+        for (int j = i + 1; j < k; j++) {
+            if (arr[j] > arr[i]) {
+                swap(arr[i], arr[j]);
+            }
+        }
+    }
+}
+
+void scanLeft(int* arr, int n) {
+    for (int i = 0; i < n; i++) {
+        arr[i] = suma(arr[i]);
+    }
+
+    sumaP(arr, n);
+}
+
+void scanRight(int* arr, int n) {
+    for (int i = n - 1; i >= 0; i--) {
+        arr[i] = suma(arr[i]);
+    }
+
+    for (int i = n - 2; i >= 0; i--) {
+        arr[i] += arr[i + 1];
+    }
+}
+
+int main() {
     srand(time(nullptr));
-//    int* arr = new int[5]{1,2,3,4,5};
-//
-//    cout << arr << endl;
-//    cout << &arr[0] << endl;
+    int N;
+    cout << "Ingrese N: ";
+    cin >> N;
 
-    int filas = 10, columnas = 10;
+    int* arr = new int[N];
 
-    int** matrix = new int*[filas];
-
-    for (int i = 0; i < filas; ++i) {
-        matrix[i] = new int[columnas];
+    for (int j = 0; j < N; j++) {
+        arr[j] = rand() % 10 + 1;
     }
 
-    for (int i = 0; i < filas; ++i) {
-        for (int j = 0; j < columnas; ++j) {
-            matrix[i][j] = rand() % 9 + 1;
-        }
-    }
+    cout<<"Array: \n";
 
-    for (int i = 0; i < filas; ++i) {
-        for (int j = 0; j < columnas; ++j) {
-            cout << matrix[i][j] << " ";
-        }
+    imprim(arr,N);
 
-        cout << endl;
-    }
+    sumaP(arr, N);
+    cout << "Suma de prefijos: \n ";
+    imprim(arr, N);
 
-    cout << &matrix[0][0] << endl; // Dirección del primer elemento del primer array
-    cout << matrix[0] << endl; // Valor del primer elemento de la matriz
+    ordenamiento(arr, N);
+    cout << "Ordenamiento: \n";
+    imprim(arr, N);
 
-    cout << &matrix[0] << endl;
-    cout << matrix << endl;
+    scanLeft(arr, N);
+    cout << "Scan-left: \n";
+    imprim(arr, N);
 
-//    **matrix = 100;
-//
-//    for (int i = 0; i < filas; ++i) {
-//        for (int j = 0; j < columnas; ++j) {
-//            cout << matrix[i][j] << " ";
-//        }
-//
-//        cout << endl;
-//    }
+    scanRight(arr, N);
+    cout << "Scan-right: \n";
+    imprim(arr, N);
 
+    delete[] arr;
+
+    return 0;
 }
