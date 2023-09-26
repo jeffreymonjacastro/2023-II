@@ -3,7 +3,7 @@ project(2023_II)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(2023_II AED/S6/AVL.cpp)
+add_executable(2023_II AED/S7/heap.cpp)
 
 add_executable(mentoria Mentorias/S5/PC2_2022-2_Hilda.cpp)
 
