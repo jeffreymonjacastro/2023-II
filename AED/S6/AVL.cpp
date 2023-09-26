@@ -16,20 +16,20 @@ struct NodeAVL{
         right = nullptr;
         h=0;
     }
-    NodeAVL(int val,int h=0){
+    NodeAVL(int val){
         data = val;
         left= nullptr;
         right = nullptr;
-        h=h;
+        h=0;
     }
     void display(){
         cout<<data<<"-"<<h;
     }
-    NodeAVL(int val,NodeAVL* l,NodeAVL* r, int h=0){
+    NodeAVL(int val,NodeAVL* l,NodeAVL* r){
         data = val;
         left= l;
         right = r;
-        h=h;
+        h=0;
     }
 };
 
@@ -47,6 +47,16 @@ int rBalanceo(NodeAVL* p){
         return altura(p->left) - altura(p->right);
 }
 
+int heightUpdate(NodeAVL* node){
+    if (node == nullptr)
+        return -1;
+
+    int left = heightUpdate(node->left);
+    int right = heightUpdate(node->right);
+
+    return 1 + max(left, right);
+}
+
 class AVL{
 private:
     NodeAVL* root;
@@ -59,8 +69,8 @@ public:
     }
 
     void rotateWithLeftChild(NodeAVL*& k2){
-        
-        NodeAVL* k1  = k2->left;
+
+        NodeAVL* k1 = k2->left;
         k2->left = k1->right;
         k1->right = k2;
         ///update heights
@@ -99,6 +109,8 @@ public:
             insert(val, n->right);
         }
 
+        n->h = heightUpdate(n);
+
         balance(n);
     }
     void insert(int val){
@@ -108,7 +120,7 @@ public:
     ///balance(t) asume que t esta balanceado o a 1 de serlo
     void balance(NodeAVL* & p){
         if(p==nullptr) return;
-        if(rBalanceo(p)>1){
+        if(rBalanceo(p) > 1){
             ///desbalanceo izquierdo
             ///2 casos: LL o LR
 
@@ -121,18 +133,17 @@ public:
                 doubleWithLeftChild(p);
             }
         }
-        else{
-            if(rBalanceo(p)<-1){
-                ///desbalanceo derecho
-                ///RL,RR
+        else if (rBalanceo(p)<-1){
+            ///desbalanceo derecho
+            ///RL,RR
 
-                ///RR
-                if(rBalanceo(p->right)<=0){
-                    rotateWithRightChild(p);
-                }
-                ///RL
-                else
-                    rotateWithRightChild(p);
+            ///RR
+            if(rBalanceo(p->right)<=0){
+                rotateWithRightChild(p);
+            }
+            ///RL
+            else {
+                rotateWithRightChild(p);
             }
         }
     }
@@ -146,7 +157,7 @@ public:
             return;
 
         inOrder(p->left);
-        cout<<p->data<<"\t";
+        cout<<p->data<<" ";
         inOrder(p->right);
     }
 
@@ -287,15 +298,13 @@ public:
 
 int main(){
     AVL* bstree = new AVL;
-    ///vector<int> v = {3,2,1,4,5,6,7};
-    cout<<"impresion bfs con altura de cada nodo:\n";
-    vector<int> v = {3,2,1,4,5,6,7, 16,15,14,13,12,11,10,8,9};
+    vector<int> v = {5,3,6,2,4,1};
+
     for(int i=0;i<v.size();i++){
         bstree->insert(v[i]);
-        bstree->bfs();
     }
 
-    bstree->remove(12);
-    bstree->bfs();
+    cout<<"impresion bfs con altura de cada nodo:\n";
+    bstree->inOrder();
     return 0;
 }
