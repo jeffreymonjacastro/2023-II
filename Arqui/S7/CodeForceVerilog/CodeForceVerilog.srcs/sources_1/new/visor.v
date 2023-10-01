@@ -21,7 +21,7 @@
 
 
 module visor(
-  input PL, RE, FF, ST, M, clk, reset,
+  input pl, re, ff, st, m, clk, reset,
   output reg P, R, F
   );
 
@@ -41,45 +41,45 @@ parameter S7 = 3'b111;
 always @(*) begin
   case (state)
     S0: begin
-      if (PL && !RE && !FF && !ST) next = S1;
-      else if (!PL && RE & !FF && !ST) next = S6;
-      else if (!PL && RE && FF && !ST) next = S7;
+      if (pl && !re && !ff && !st) next = S1;
+      else if (!pl && re & !ff && !st) next = S6;
+      else if (!pl && !re && ff && !st) next = S7;
     end
 
     S1: begin
-      if (ST) next = S0;
-      else if (PL && RE && !FF && !ST) next = S2;
-      else if (PL && !RE && FF && !ST) next = S4;
+      if (st) next = S0;
+      else if (pl && re && !ff && !st) next = S2;
+      else if (pl && !re && ff && !st) next = S4;
     end
 
     S2: begin
-      if (ST) next = S0;
-      else if (PL && !RE && !FF && !ST) next = S3;
+      if (st) next = S0;
+      else if (pl && !re && !ff && !st) next = S3;
     end
 
     S3: begin
-      if (ST) next = S0;
-      else if (PL && ~M) next = S1;
+      if (st) next = S0;
+      else if (pl && !st && ~m) next = S1;
     end
 
     S4: begin
-      if (ST) next = S0;
-      else if (PL && !RE && !FF && !ST) next = S5;
+      if (st) next = S0;
+      else if (pl && !re && !ff && !st) next = S5;
     end
 
     S5: begin
-      if (ST) next = S0;
-      else if (PL && ~M) next = S1;
+      if (st) next = S0;
+      else if (pl && !st && ~m) next = S1;
     end
 
     S6: begin
-      if (ST) next = S0;
-      else if (!PL && !RE && !FF && !ST) next = S0;
+      if (st) next = S0;
+      else if (!pl && !re && !ff && !st) next = S0;
     end
 
     S7: begin
-      if (ST) next = S0;
-      else if (!PL && !RE && !FF && !ST) next = S0;
+      if (st) next = S0;
+      else if (!pl && !re && !ff && !st) next = S0;
     end
   endcase
 end
@@ -96,19 +96,19 @@ always @(*)
 begin 
   case(state)
     S0: begin
-        P=0 ;R=0; F=0;
+      P=0 ;R=0; F=0;
     end
     
     S1, S2, S4: begin
-        P=1; R=0; F=0;
-    end
-    
-    S5, S7: begin
-        P=0; R=0; F=1;
+      P=1; R=0; F=0;
     end
     
     S3, S6: begin
-        P=0; R=1; F=0;
+      P=0; R=1; F=0;
+    end
+
+    S5, S7: begin
+      P=0; R=0; F=1;
     end
   endcase
 end
