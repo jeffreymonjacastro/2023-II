@@ -52,6 +52,62 @@ public:
     }
 };
 
+// HACK
+//class Perro {
+//private:
+//    string nombre;
+//    string raza;
+//    int edad;
+//    float talla;
+//    float peso;
+//public:
+//    Perro(const string &nombre, const string &raza, int edad, float talla, float peso) : nombre(nombre), raza(raza), edad(edad), talla(talla),  peso(peso) {}
+//
+//    const string &getNombre() const {
+//        return nombre;
+//    }
+//
+//    void setNombre(const string &nombre) {
+//        Perro::nombre = nombre;
+//    }
+//
+//    const string &getRaza() const {
+//        return raza;
+//    }
+//
+//    void setRaza(const string &raza) {
+//        Perro::raza = raza;
+//    }
+//
+//    int getEdad() const {
+//        return edad;
+//    }
+//
+//    void setEdad(int edad) {
+//        Perro::edad = edad;
+//    }
+//
+//    float getTalla() const {
+//        return talla;
+//    }
+//
+//    void setTalla(float _talla) {
+//        talla = _talla;
+//
+//    }
+//
+//    float getPeso() const {
+//        return peso;
+//    }
+//
+//    void setPeso(float peso) {
+//        Perro::peso = peso;
+//    }
+//
+//    virtual ~Perro() {
+//
+//    }
+//};
 
 
 
