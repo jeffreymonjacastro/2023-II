@@ -53,17 +53,17 @@ public:
         Node *fastpar = head;//pos 0
         Node *fastimpar = head->next;//pos 1
 
-        while((fastpar != nullptr and fastpar->next != nullptr) or (fastimpar->next != nullptr))
+        while((fastpar != nullptr and fastpar->next != nullptr) and (fastimpar->next != nullptr and fastimpar->next != nullptr))
         {
             if (fastpar->data == value) {
                 T temp = slow->data;
-                slow->data = fastpar->value;
+                slow->data = fastpar->data;
                 fastpar->data = temp;
                 return true;
             }
             if (fastimpar->data == value) {
                 T temp = slow->data;
-                slow->data = fastimpar->value;
+                slow->data = fastimpar->data;
                 fastimpar->data = temp;
                 return true;
             }
@@ -117,7 +117,7 @@ public:
     }
 
     bool search_transpose_middle_chavez(T value){
-        return search_transpose_middle_ours(head, value);
+        return search_transpose_middle_chavez(head, value);
     }
 
 };
