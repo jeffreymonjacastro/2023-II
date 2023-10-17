@@ -86,6 +86,10 @@ module visorVR(
         endcase
     end
 
+    // Clock divider
+    // wire clkdiv;
+    // clk_divider clkd(clk, reset, clkdiv);
+
     // register
     always @(posedge clk, posedge reset)
     begin
