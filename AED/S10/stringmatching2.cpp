@@ -54,7 +54,7 @@ void testBoyerMoore(string Texto, string Patron)
 int main()
 {
     srand(time(NULL));
-    //generate text
+//    //generate text
     size_t N = 1000000;
     int m = 10;
     string Texto = generarTexto(N);
@@ -63,7 +63,9 @@ int main()
     cout<<"size de texto a buscar: "<<N<<"\n";
     cout<<"Patron: "<<Patron<<"\n";
     testInocente(Texto, Patron);
-    testBoyerMoore(Texto, Patron);
+//    testBoyerMoore(Texto, Patron);
+//    buildPositions(Patron);
+
     return 0;
 }
 
