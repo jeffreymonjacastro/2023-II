@@ -29,18 +29,33 @@ int* buildPositions(string patron){
         array[patron[i]] = i;
 
     // Letras
-    for (int i = 65; i < 91; ++i) {
-        cout << char(i) << ": " << array[i] << endl;
-    }
+//    for (int i = 65; i < 91; ++i) {
+//        cout << char(i) << ": " << array[i] << endl;
+//    }
 
 	return array;
 }
 
 vector<int> boyerMoore(string Texto, string Patron)
 {
+    int n = Texto.size();
+    int m = Patron.size();
+    int* positions = buildPositions(Patron);
+
     vector<int> resultado;
 
+    for (int i = 0; i <= n-m; ) {
+        int j = m-1;
+        while (j >= 0 && Patron[j] == Texto[i+j]){
+            j--;
+        }
 
-
+        if (j >= 0) {
+            i += max(1, j - positions[Texto[i + j]]);
+        } else {
+            resultado.push_back(i);
+            i += m;
+        }
+    }
     return resultado;
 }

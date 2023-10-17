@@ -63,8 +63,7 @@ int main()
     cout<<"size de texto a buscar: "<<N<<"\n";
     cout<<"Patron: "<<Patron<<"\n";
     testInocente(Texto, Patron);
-//    testBoyerMoore(Texto, Patron);
-//    buildPositions(Patron);
+    testBoyerMoore(Texto, Patron);
 
     return 0;
 }
