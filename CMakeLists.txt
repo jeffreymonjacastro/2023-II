@@ -7,6 +7,6 @@ add_executable(2023_II
         AED/S10/stringmatching2.cpp
         AED/S10/smatching2.h)
 
-add_executable(mentoria Mentorias/S7/PC2_P3_Hilda_2022-2.cpp)
+add_executable(mentoria Mentorias/S8/Agregacion.cpp)
 
 add_executable(cpc CPC/Codeforces/895D3/A.cpp)
