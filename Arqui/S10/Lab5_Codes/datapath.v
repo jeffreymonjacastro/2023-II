@@ -95,14 +95,12 @@ module datapath (
 	// Byte Offsets for LDRB Instruction
 	always @(*) begin
 		if (LDRB) begin
-			if (ALUResult[1:0] == 2'b00)
-				ReadDataLDRB = {24'b000000000000000000000000, ReadData[7:0]};
-			else if (ALUResult[1:0] == 2'b01)
-				ReadDataLDRB = {24'b000000000000000000000000, ReadData[15:8]};
-			else if (ALUResult[1:0] == 2'b10)
-				ReadDataLDRB = {24'b000000000000000000000000, ReadData[23:16]};
-			else if (ALUResult[1:0] == 2'b11)
-				ReadDataLDRB = {24'b000000000000000000000000, ReadData[31:24]};
+			casex(ALUResult[1:0])
+				2'b00: ReadDataLDRB = {24'b000000000000000000000000, ReadData[7:0]};
+				2'b01: ReadDataLDRB = {24'b000000000000000000000000, ReadData[15:8]};
+				2'b10: ReadDataLDRB = {24'b000000000000000000000000, ReadData[23:16]};
+				2'b11: ReadDataLDRB = {24'b000000000000000000000000, ReadData[31:24]};
+			endcase
 		end
 	end
 
