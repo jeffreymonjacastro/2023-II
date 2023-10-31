@@ -7,6 +7,6 @@ add_executable(2023_II
         AED/S10/stringmatching2.cpp
         AED/S10/smatching2.h)
 
-add_executable(mentoria Mentorias/S9/polimorfismo.cpp)
+add_executable(mentoria Mentorias/S10/PC3.cpp)
 
 add_executable(cpc CPC/Codeforces/895D3/A.cpp)
