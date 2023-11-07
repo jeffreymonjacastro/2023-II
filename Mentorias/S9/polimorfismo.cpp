@@ -48,6 +48,7 @@ public:
 int main(){
     double result;
 
+    suma('1', '2');
     result = suma(2.5, 3.9);
 
     cout << result << endl;
