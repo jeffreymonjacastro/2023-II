@@ -5,7 +5,9 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_executable(2023_II
         AED/S13/graph.h
-        AED/S13/main.cpp)
+        AED/S13/main.cpp
+        AED/S13/heap.h
+        AED/S13/heap.h)
 
 add_executable(mentoria
         Mentorias/S11/pruebas.cpp

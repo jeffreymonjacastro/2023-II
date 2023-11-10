@@ -3,12 +3,10 @@
 
 #include <iostream>
 #include <unordered_map>
-#include <stack>
 #include <queue>
+#include "heap.h"
 
-
-#define mapita unordered_map<int, unordered_map<int, int>>
-
+#define mapita unordered_map<int, unordered_map<int,int>>
 using namespace std;
 
 class Graph {
@@ -107,11 +105,11 @@ public:
         }
 
         for(auto i : adj){
-            BFSxd(visited, i.first);
+            BFS(visited, i.first);
         }
     }
 
-    void BFSxd(unordered_map<int,bool>& visited, int vertex){
+    void BFS(unordered_map<int,bool>& visited, int vertex){
         if (visited[vertex]) return;
 
         visited[vertex] = true;
@@ -133,37 +131,43 @@ public:
         }
     }
 
-    void Dijkstra(){
+    void Dijkstra(int vertex = -1){
+        if (adj.empty()) return;
+        if (vertex == -1) vertex = adj.begin()->first;
 
+        unordered_map<int,int> Dist;
+        unordered_map<int,int> Parent;
+
+        for(auto i : adj){
+            Dist[i.first] = INT_MAX;
+        }
+
+        Parent[vertex] = vertex; // Padre
+        Dist[vertex] = 0;
+        Heap Priority;
+        Priority.push({vertex,0});
+        while (!Priority.is_empty()){
+            pair<int,int> curr = Priority.top();
+            Priority.pop();
+            for (auto i : adj[curr.first]){
+                if (curr.second + i.second > Dist[i.first]) continue;
+                Dist[i.first] = curr.second + i.second;
+                Parent[i.first] = curr.first;
+                Priority.push({i.first, Dist[i.first]});
+            }
+        }
+        for(auto i : Dist){
+            cout << i.first << ":" << i.second << endl;
+        }
+
+        for(auto i : Parent){
+            cout << "vertice : " << i.first << " - Padre: " << i.second << endl;
+        }
     }
 
 
     ~Graph(){};
 };
-
-//class Graph2 {
-//private:
-//    struct Vertex {
-//        int dato;
-//        unordered_map<int, int> aristas;
-//
-//        Vertex() = default;
-//        Vertex(int d) : dato(d) {}
-//    };
-//
-//    unordered_map<int, Vertex> vertices;
-//
-//public:
-//    Graph2(){}
-//
-//    void aggregate(int dato){
-//        vertices[vertices.size() + 1] = Vertex(dato);
-//    }
-//
-//
-//
-//    ~Graph2(){}
-//};
 
 
 #endif //PROYECTO_GRUPO_7_GRAPH_H

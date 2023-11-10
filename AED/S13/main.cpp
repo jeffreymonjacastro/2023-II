@@ -1,7 +1,4 @@
-#include <iostream>
 #include "graph.h"
-
-using namespace std;
 
 int main(){
     Graph graph;
@@ -11,30 +8,27 @@ int main(){
         graph.aggregate(i);
     }
 
-    graph.connect(1, 2, 1);
-    graph.connect(1, 3, 1);
-    graph.connect(2, 3, 1);
-    graph.connect(2, 4, 1);
+    graph.connect(1, 2, 20);
+    graph.connect(1, 3, 5);
+    graph.connect(2, 3, 7);
+    graph.connect(2, 4, 12);
     graph.connect(3, 4, 1);
-    graph.connect(3, 5, 1);
-    graph.connect(4, 5, 1);
-    graph.connect(4, 6, 1);
-    graph.connect(5, 6, 1);
-    graph.connect(5, 7, 1);
+    graph.connect(3, 5, 2);
+    graph.connect(4, 5, 9);
+    graph.connect(4, 6, 6);
+    graph.connect(5, 6, 3);
+    graph.connect(5, 7, 4);
     graph.connect(6, 7, 1);
-    graph.connect(6, 8, 1);
-    graph.connect(7, 8, 1);
-    graph.connect(7, 9, 1);
-    graph.connect(8, 9, 1);
-    graph.connect(8, 10, 1);
-    graph.connect(9, 10, 1);
-    graph.connect(1, 10, 1);
+    graph.connect(6, 8, 40);
+    graph.connect(7, 8, 7);
+    graph.connect(7, 9, 11);
+    graph.connect(8, 9, 13);
+    graph.connect(8, 10, 19);
+    graph.connect(9, 10, 2);
+    graph.connect(1, 10, 5);
     graph.connect(2, 9, 1);
 
-    cout << graph;
-    graph.DFS();
-    cout << endl;
-    graph.BFS();
+    graph.Dijkstra();
 
     return 0;
 }
