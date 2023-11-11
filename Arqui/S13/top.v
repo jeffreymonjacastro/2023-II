@@ -13,7 +13,6 @@ module top (
 	wire [31:0] PC;
 	wire [31:0] Instr;
 	wire [31:0] ReadData;
-	
 	// instantiate processor and shared memory
 	arm arm(
 		.clk(clk),
@@ -23,7 +22,6 @@ module top (
 		.WriteData(WriteData),
 		.ReadData(ReadData)
 	);
-
 	mem mem(
 		.clk(clk),
 		.we(MemWrite),

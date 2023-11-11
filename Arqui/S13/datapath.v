@@ -63,4 +63,123 @@ module datapath (
 	// (Address Mux), etc. so that your code is easier to understand.
 
 	// ADD CODE HERE
+ 	// next PC logic
+	flopenr #(32) pcreg(
+		clk, 
+		reset, 
+		PCWrite, 
+		Result, 
+		PC
+	);
+	
+	// memory logic
+	mux2 #(32) adrmux(
+		PC, 
+		ALUOut, 
+		AdrSrc, 
+		Adr
+	);
+
+	flopenr #(32) ir(
+		clk, 
+		reset, 
+		IRWrite, 
+		ReadData, 
+		Instr
+	);
+
+	flopr #(32) datareg(
+		clk, 
+		reset, 
+		ReadData, 
+		Data
+	);
+
+ 	// register file logic
+	mux2 #(4) ra1mux(
+		Instr[19:16], 
+		4'b1111, 
+		RegSrc[0], 
+		RA1
+	);
+
+	mux2 #(4) ra2mux(
+		Instr[3:0], 
+		Instr[15:12], 
+		RegSrc[1], 
+		RA2
+	);
+
+	regfile rf(
+		clk, 
+		RegWrite, 
+		RA1, 
+		RA2,
+		Instr[15:12], 
+		Result, 
+		Result,
+		RD1, 
+		RD2
+	);
+
+	flopr #(32) srcareg(
+		clk, 
+		reset, 
+		RD1, 
+		A
+	);
+
+	flopr #(32) wdreg(
+		clk, 
+		reset, 
+		RD2, 
+		WriteData
+	);
+	
+	extend ext(
+		Instr[23:0], 
+		ImmSrc, 
+		ExtImm
+	);
+	
+	// ALU logic
+  mux3 #(32) srcamux(
+    A,
+    PC,
+    ALUOut,
+    ALUSrcA,
+    SrcA
+  );
+
+	mux3 #(32) srcbmux(
+		WriteData, 
+		ExtImm, 
+		32'd4, 
+		ALUSrcB, 
+		SrcB
+	);
+
+	alu alu(
+		SrcA, 
+		SrcB, 
+		ALUControl, 
+		ALUResult, 
+		ALUFlags
+	);
+	
+	flopr #(32) aluoutreg(
+		clk, 
+		reset, 
+		ALUResult,
+		ALUOut
+	);
+
+	mux3 #(32) resmux(
+		ALUOut, 
+		Data, 
+		ALUResult, 
+		ResultSrc, 
+		Result
+	); 
+
 endmodule

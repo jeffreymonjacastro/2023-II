@@ -23,7 +23,7 @@ module decode (
 	input wire [1:0] Op;
 	input wire [5:0] Funct;
 	input wire [3:0] Rd;
-	output wire [1:0] FlagW;
+	output reg [1:0] FlagW;
 	output wire PCS;
 	output wire NextPC;
 	output wire RegW;
@@ -35,7 +35,7 @@ module decode (
 	output wire [1:0] ALUSrcB;
 	output wire [1:0] ImmSrc;
 	output wire [1:0] RegSrc;
-	output wire [1:0] ALUControl;
+	output reg [1:0] ALUControl;
 	wire Branch;
 	wire ALUOp;
 
@@ -61,14 +61,28 @@ module decode (
 	// Add code for the ALU Decoder and PC Logic.
 	// Remember, you may reuse code from previous labs.
 	// ALU Decoder
+	always @(*)
+		if (ALUOp) begin
+			case(Funct[4:1])
+				4'b0100: ALUControl = 2'b00; // ADD
+				4'b0010: ALUControl = 2'b01; // SUB
+				4'b0000: ALUControl = 2'b10; // AND
+				4'b1100: ALUControl = 2'b11; // ORR
+				default: ALUControl = 2'bx;  // Por defecto
+			endcase
+			
+			FlagW[1] = Funct[0];
+			FlagW[0] = Funct[0] & (ALUControl == 2'b00 | ALUControl == 2'b01);
+		end else begin
+			ALUControl = 2'b00; 
+			FlagW = 2'b00; 
+		end
 
 	// PC Logic
-
-
-	// Add code for the Instruction Decoder (Instr Decoder) below.
-	// Recall that the input to Instr Decoder is Op, and the outputs are
-	// ImmSrc and RegSrc. We've completed the ImmSrc logic for you.
+  assign PCS = ((Rd == 4'b1111) & RegW) | Branch;
 
 	// Instr Decoder
 	assign ImmSrc = Op;
+	assign RegSrc[0] = (Op == 2'b10); // read PC on Branch
+	assign RegSrc[1] = (Op == 2'b01); // read Rd on STR 
 endmodule

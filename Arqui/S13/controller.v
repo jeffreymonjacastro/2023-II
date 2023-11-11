@@ -35,6 +35,7 @@ module controller (
 	wire NextPC;
 	wire RegW;
 	wire MemW;
+
 	decode dec(
 		.clk(clk),
 		.reset(reset),
@@ -55,6 +56,7 @@ module controller (
 		.RegSrc(RegSrc),
 		.ALUControl(ALUControl)
 	);
+	
 	condlogic cl(
 		.clk(clk),
 		.reset(reset),

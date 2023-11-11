@@ -1,7 +1,7 @@
-module alu ( input [31:0] a,b,
-             input [1:0] ALUControl,
-             output reg [31:0] Result, //assign always block
-             output wire [3:0] ALUFlags); //explicit wire for assign with {}
+module alu (input [31:0] a,b,
+            input [1:0] ALUControl,
+            output reg [31:0] Result, //assign always block
+            output wire [3:0] ALUFlags); //explicit wire for assign with {}
   
   wire negative, zero, carry, overflow; // define wire for each flag (n,z,c,v)
   wire [32:0] sum;

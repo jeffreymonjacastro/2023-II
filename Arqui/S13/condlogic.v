@@ -27,18 +27,48 @@ module condlogic (
 	output wire PCWrite;
 	output wire RegWrite;
 	output wire MemWrite;
+	
 	wire [1:0] FlagWrite;
 	wire [3:0] Flags;
-	wire CondEx;
+	wire CondEx, CondExDelayed; // DELAY
 
-	// Delay writing flags until ALUWB state
-	flopr #(2) flagwritereg(
-		clk,
-		reset,
-		FlagW & {2 {CondEx}},
-		FlagWrite
-	);
 
 	// ADD CODE HERE
+
+	flopenr #(2) flagreg1(
+		clk, 
+		reset, 
+		FlagWrite[1], 
+		ALUFlags[3:2],
+		Flags[3:2]
+	);
+	
+	flopenr #(2) flagreg0( 
+		clk, 
+		reset, 
+		FlagWrite[0], 
+		ALUFlags[1:0],
+		Flags[1:0]
+	);
+
+	// write controls are conditional
+	condcheck cc(
+		Cond, 
+		Flags, 
+		CondEx
+	);
+
+	// Delay writing flags until ALUWB state
+	flopr #(1) condreg(
+		clk, 
+		reset, 
+		CondEx, 
+		CondExDelayed
+	);
+
+	assign FlagWrite = FlagW & {2{CondEx}};
+	assign RegWrite = RegW & CondExDelayed;
+	assign MemWrite = MemW & CondExDelayed;
+	assign PCWrite = (PCS & CondExDelayed) | NextPC;
 
 endmodule

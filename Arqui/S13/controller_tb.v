@@ -14,7 +14,7 @@ module testbench;
         .MemWrite(MemWrite)
     );
     initial begin
-        $dumpfile("multi_tb_2.vcd");
+        $dumpfile("controller_waveform.vcd");
         $dumpvars(0, testbench);
         reset <= 1;
         #(22)
@@ -30,12 +30,12 @@ module testbench;
             ;
     end
     always @(negedge clk)
-        if (MemWrite)
-            if ((DataAdr === 100) & (WriteData === 7)) begin
+        if (!MemWrite)
+            if ((DataAdr === 92) & (WriteData === 7)) begin
                 $display("Simulation succeeded");
                 $stop;
             end
-            else if (DataAdr !== 96) begin
+            else if (DataAdr !== 92) begin
                 $display("Simulation failed");
                 $stop;
             end

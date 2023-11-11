@@ -1,9 +1,3 @@
-// ADD CODE BELOW
-// Add needed building blocks below (i.e., parameterizable muxes, 
-// registers, etc.). Remember, you can reuse code from previous labs.
-// We've also provided a parameterizable 3:1 mux below for your 
-// convenience.
-
 module mux3 (
 	d0,
 	d1,
