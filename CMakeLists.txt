@@ -10,8 +10,8 @@ add_executable(2023_II
         AED/S13/heap.h)
 
 add_executable(mentoria
-        Mentorias/S11/pruebas.cpp
-        Mentorias/S11/myvec.h
+#        Mentorias/S12/Archivosteo.cpp
+        Mentorias/S12/PC3_2022_2.cpp
 )
 
 add_executable(cpc CPC/Codeforces/895D3/A.cpp)
