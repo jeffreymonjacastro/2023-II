@@ -1,0 +1,4 @@
+{
+    "tenant_id": "UTEC",
+    "texto": "Hola mundo. Este curso es muy interesante"
+}

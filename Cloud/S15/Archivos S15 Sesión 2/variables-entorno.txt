@@ -1,0 +1,9 @@
+$ printenv
+$ NOMBRE_ALUMNO="Geraldo Colchado Ruiz"
+$ NOMBRE_EMPRESA="UTEC"
+$ printenv
+$ export NOMBRE_ALUMNO
+$ export NOMBRE_EMPRESA
+$ printenv
+$ echo $NOMBRE_ALUMNO
+$ echo $NOMBRE_EMPRESA

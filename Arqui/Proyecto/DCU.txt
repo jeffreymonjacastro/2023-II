@@ -1,0 +1,93 @@
+#include <iostream>
+#include <vector>
+#include <list>
+using namespace std;
+
+void ex1(), ex2(), ex3();
+
+int n;
+vector<int> p(n);
+vector<int> h(n);
+
+
+
+void create_set(int i){ // O(1)
+    p[i] = i; // O(1)
+    h[i] = 0; // O(1)
+}
+
+
+int find_set(int i){ // O(h)
+    if(p[i] == i)
+        return i;
+    else 
+        return find_set(p[i]);
+}
+
+
+void union_set(int i, int j){
+
+    i = find_set(i);
+    j = find_set(j);
+
+    if(i!=j){
+        if(h[i] < h[j])
+            p[i] = j;    
+        else if(h[i] > h[j])
+            p[j] = i;
+        else{
+            p[j] = i;
+            h[i] += 1;  
+        }
+    }
+    
+}
+
+int main(){
+
+    ex1();
+    // ex2();
+    // ex3();
+}
+
+
+void ex1(){
+
+    cin >> n;
+
+    p.resize(n);
+    h.resize(n);
+
+    create_set(0);
+    create_set(1);
+    create_set(2);
+    create_set(3);
+    create_set(4);
+    create_set(5);
+    create_set(6);
+    create_set(7);
+
+    
+    union_set(0,1);
+    union_set(1,2);
+
+    for(size_t i = 0; i < n; i++)
+        cout << i << ": "<< p[i] << endl;
+    cout << '\n';
+
+    union_set(3,4);
+    union_set(4,5);
+    union_set(5,6);
+    union_set(6,7);
+
+    for(size_t i = 0; i < n; i++)
+        cout << i << ": "<< p[i] << endl;
+    cout << '\n';
+    
+    union_set(0,7);
+
+   for(size_t i = 0; i < n; i++)
+        cout << i << ": "<< p[i] << endl;
+    cout << '\n';
+    
+}

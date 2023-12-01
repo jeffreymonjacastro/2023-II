@@ -1,0 +1,43 @@
+service: api-lectura-sensor
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9	
+  # Default memory size for functions (default: 256MB)
+  memorySize: 256
+  iam:
+    role: arn:aws:iam::570285391713:role/LabRole	
+  environment:
+    TABLE_NAME: ${sls:stage}-t_lectura_sensor
+
+functions:
+  crear:
+    handler: sensor.lambda_handler
+    memorySize: 512
+    events:
+      - http:
+          path: /sensor/crear
+          method: post
+          # Enable CORS. Don't forget to return the right header in your response
+          cors: true
+          integration: lambda
+
+resources:
+  Resources:
+    TablaComentarios:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.TABLE_NAME}
+        AttributeDefinitions:
+          - AttributeName: id_sensor
+            AttributeType: S
+          - AttributeName: uuid
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id_sensor
+            KeyType: HASH
+          - AttributeName: uuid
+            KeyType: RANGE
+        # Set the capacity to auto-scale
+        BillingMode: PAY_PER_REQUEST

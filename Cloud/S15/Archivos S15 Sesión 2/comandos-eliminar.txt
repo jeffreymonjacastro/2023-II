@@ -1,0 +1,3 @@
+$ serverless remove
+$ serverless remove --stage test
+$ serverless remove --stage prod
