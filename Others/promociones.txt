@@ -1,0 +1,10 @@
+Lima,Cusco,Bus,Correcaminos,0900,48.90
+Lima,Cusco,Aereo,Aviador,1123,47.20
+Lima,Cusco,Aereo,CondorAir,1530,45.60
+Lima,Tacna,Aereo,Avispaflights,1140,24.80
+Lima,Huaraz,Bus,Cienpies,1200,25.00
+Lima,Cajamarca,Aereo,PalmeraAir,1115,45.00 
+Lima,Trujillo,Bus,Correcaminos,1105,38.70
+Lima,Trujillo,Aereo,CondorAir,1615,68.70
+Lima,Arequipa,Aereo,Avispaflights,1825,55.80
+Lima,Arequipa,Bus,Volcan,0035,48.20
